@@ -1,0 +1,387 @@
+@import url('variables.css');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#F8FAFC;
+    color:var(--dark);
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+}
+
+section{
+    padding:100px 0;
+}
+
+/*Pour le logo*/
+
+.logo-brand{
+
+    font-size:2rem;
+    font-weight:800;
+
+    background:linear-gradient(
+        135deg,
+        #60A5FA,
+        #22D3EE
+
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+.navbar{
+    min-height:85px;
+}
+
+.navbar .container-custom{
+    display:flex;
+    align-items:center;
+}
+
+.navbar-brand{
+    margin-bottom:0;
+    display:flex;
+    align-items:center;
+}
+
+.navbar-nav{
+    align-items:center;
+}
+.navbar-custom{
+
+    background:rgba(132, 143, 168, 0.603);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+.nav-link{
+
+    color:rgba(255,255,255,.75) !important;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:white !important;
+
+}
+
+.btn-login{
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    background:transparent;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+
+}
+
+.btn-register{
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #06B6D4
+    );
+
+    border:none;
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+
+}
+
+.container-custom{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+.hero{
+
+    position:relative;
+    background:#0F172A;
+    overflow:hidden;
+    color:white;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+    width:800px;
+    height:800px;
+
+    background:radial-gradient(
+        circle,
+        rgba(37,99,235,0.35),
+        transparent 70%
+    );
+
+    top:-250px;
+    right:-150px;
+
+}
+
+.hero-title{
+
+    font-size:4rem;
+    font-weight:800;
+    line-height:1.1;
+    margin-top:20px;
+
+}
+
+.hero-title span{
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #06B6D4
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+.hero-description{
+
+    color:#CBD5E1;
+    margin-top:25px;
+    font-size:1.15rem;
+    max-width:550px;
+
+}
+
+.badge-custom{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+/* le CSS du Hero*/
+
+.hero-buttons{
+
+    margin-top:35px;
+
+}
+
+.btn-primary-custom{
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #06B6D4
+    );
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+.btn-secondary-custom{
+
+    margin-left:15px;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+.hero-stats{
+
+    display:flex;
+    gap:50px;
+    margin-top:50px;
+
+}
+
+.hero-stats h3{
+
+    font-weight:700;
+
+}
+
+.hero-stats span{
+
+    color:#94A3B8;
+
+}
+/* Cartes Glassmorphism*/
+.hero-visual{
+
+    position:relative;
+    height:600px;
+
+}
+
+.glass-card{
+
+    position:absolute;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    width:260px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.2);
+
+}
+
+.card-1{
+
+    top:100px;
+    left:20px;
+
+}
+
+.card-2{
+
+    top:260px;
+    right:30px;
+
+}
+
+.card-3{
+
+    top:420px;
+    left:120px;
+
+}
+
+/* Responsive*/
+@media(max-width:991px){
+
+.hero-title{
+
+    font-size:2.8rem;
+
+}
+
+.hero-visual{
+
+    margin-top:60px;
+    height:500px;
+
+}
+
+.hero-stats{
+
+    gap:25px;
+
+}
+
+}
+/*style bulles flottantes*/
+.floating-circle{
+
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+
+    opacity:.5;
+
+}
+
+.circle-1{
+
+    width:250px;
+    height:250px;
+
+    background:#2563EB;
+
+    top:150px;
+    left:-100px;
+
+}
+
+.circle-2{
+
+    width:180px;
+    height:180px;
+
+    background:#06B6D4;
+
+    top:400px;
+    right:50px;
+
+}
+
+.circle-3{
+
+    width:140px;
+    height:140px;
+
+    background:#3B82F6;
+
+    top:80px;
+    right:250px;
+
+}
+/*Effet Hover Premium*/
+.glass-card{
+
+    transition:.4s;
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:
+    rgba(255,255,255,.4);
+
+}
