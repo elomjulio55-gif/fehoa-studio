@@ -1,20 +1,21 @@
 :root{
 
     /* Couleurs principales */
+    --primary:#4F46E5;
+    --secondary:#14B8A6;
 
-    --primary:#2563EB;
-    --secondary:#06B6D4;
-    --dark:#0F172A;
-    --dark-light:#1E293B;
+    --dark:#0B1120;
+    --dark-light:#111827;
+
     --white:#FFFFFF;
+
     --gray:#94A3B8;
 
-    /* Dégradés */
-
-    --gradient-primary:linear-gradient(
+    --gradient-primary:
+    linear-gradient(
         135deg,
-        #2563EB,
-        #06B6D4
+        #4F46E5,
+        #14B8A6
     );
 
     /* Ombres */
