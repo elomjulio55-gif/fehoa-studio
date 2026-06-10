@@ -1,38 +1,15 @@
 <?php
 
-require(connexionBD.php);
+require('../connexionBD.php');
 
-$idutilisateur = $_GET['id'] ?? null;
-if (!$idutilisateur) {
-    echo "id du utilisateur non spécifié.";
-    exit;
+// Récupère les données du formulaire
+$id = $_SESSION['id'] ?? '';
+
+// Insertion
+$stmt = $conn->prepare("DELETE FROM utilisateur WHERE ID= ? ");
+$stmt->bind_param("s", $id);
+$success = $stmt->execute();
+if (!$success) {
+    echo '<div style="...">❌ Une erreur s\'est produite</div>';
 }
-
-// Vérifier si le utilisateur existe
-$stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE idutilisateur = :id");
-$stmt->execute(['id' => $idutilisateur]);
-$utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$utilisateur) {
-    echo "utilisateur introuvable.";
-    exit;
-}
-
-// Supprimer le utilisateur
-$stmt = $pdo->prepare("DELETE FROM commandes WHERE idclient = :id");
-$stmt->execute(['id' => $idutilisateur]);
-
-$stmt = $pdo->prepare("DELETE FROM panier WHERE idclient = :id");
-$stmt->execute(['id' => $idutilisateur]);
-
-$stmt = $pdo->prepare("DELETE FROM favoris WHERE idclient = :id");
-$stmt->execute(['id' => $idutilisateur]);
-
-$stmt = $pdo->prepare("DELETE FROM utilisateurs WHERE idutilisateur = :id");
-$stmt->execute(['id' => $idutilisateur]);
-        echo '<script>
-           
-                    window.location.href = "http://localhost/projetboutiqueV2/admin.php";
-         
-              </script>';
 ?>
