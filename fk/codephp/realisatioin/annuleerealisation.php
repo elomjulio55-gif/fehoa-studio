@@ -6,7 +6,7 @@ require('../connexionBD.php');
 $id = $_SESSION['id'] ?? '';
 
 // Insertion
-$stmt = $conn->prepare("DELETE FROM demande WHERE ID= ? ");
+$stmt = $conn->prepare("UPDATE demande SET status='annulee' WHERE ID= ?");
 $stmt->bind_param("i", $id);
 $success = $stmt->execute();
 if (!$success) {

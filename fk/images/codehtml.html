@@ -1,0 +1,19 @@
+<!-- Photo de profil -->
+<form action="upload_profil.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="photo" accept="image/*">
+    <button type="submit">Mettre à jour</button>
+</form>
+
+<!-- Photos demande -->
+<form action="upload_demande.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="demande_id" value="<?= $demande_id ?>">
+    <input type="file" name="photos[]" accept="image/*" multiple>
+    <button type="submit">Envoyer</button>
+</form>
+
+<!-- Photos réalisation -->
+<form action="upload_realisation.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="realisation_id" value="<?= $realisation_id ?>">
+    <input type="file" name="photos[]" accept="image/*" multiple>
+    <button type="submit">Envoyer</button>
+</form>

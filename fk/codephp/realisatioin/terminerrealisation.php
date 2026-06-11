@@ -5,8 +5,8 @@ require('../connexionBD.php');
 // Récupère les données du formulaire
 $id = $_SESSION['id'] ?? '';
 
-// Insertion
-$stmt = $conn->prepare("DELETE FROM demande WHERE ID= ? ");
+// Update
+$stmt = $conn->prepare("UPDATE demande SET status='terminee' WHERE ID= ?");
 $stmt->bind_param("i", $id);
 $success = $stmt->execute();
 if (!$success) {

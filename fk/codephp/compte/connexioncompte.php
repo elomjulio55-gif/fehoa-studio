@@ -1,30 +1,27 @@
 <?php
 session_start(); // ⚡ Démarre la session
 
-try {
-    $conn = new PDO("pgsql:host=localhost;dbname=sitedevente", "postgres", "raymond2008");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
+require('../connexionBD.php');
 
 $email = $_POST['email'] ?? '';
-$motdepasse = $_POST['motdepasse'] ?? '';
+$mot_de_passe = $_POST['mot_de_passe'] ?? '';
 
-$stmt = $conn->prepare("SELECT * FROM utilisateurs WHERE email = :email");
-$stmt->execute(['email' => $email]);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$req = $conn->prepare("SELECT * FROM utilisateur WHERE email = ?");
+$req->bind_param("s", $email);
+$req->execute();
+$res = $req->get_result();
+$row = $res->fetch_assoc();
 
 if ($row) {
-    if (password_verify($motdepasse, $row['motdepasse'])) {
+    if (password_verify($mot_de_passe, $row['mot_de_passe'])) {
         $_SESSION['utilisateur_id'] = $row['idutilisateur'];
-        $_SESSION['pseudo'] = $row['pseudo'];
+        $_SESSION['nom'] = $row['nom'];
+        $_SESSION['prenom'] = $row['prenom'];
+        $_SESSION['telephone'] = $row['telephone'];
         $_SESSION['email'] = $row['email'];
-        $_SESSION['role'] = $row['role'];
 
         echo '<div style="padding: 15px; margin: 20px auto; border: 2px solid green; color: green; background-color: #eaf8ea; width: 60%; text-align: center; border-radius: 8px;">
-                ✅ Connexion réussie. Bienvenue ' . htmlspecialchars($row['pseudo']) . ' !<br>
-                Vous allez être redirigé...
+                ✅ Connexion réussie. Bienvenue ' . htmlspecialchars($row['nom']) . ' !<br>
               </div>';
         exit();
     } else {
