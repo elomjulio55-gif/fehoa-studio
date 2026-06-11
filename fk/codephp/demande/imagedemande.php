@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../../connexionBD.php');
+require('../connexionBD.php');
 
 $demande_id = $_POST['demande_id'] ?? '';
 $dossier = '../../images/demandes/';

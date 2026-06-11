@@ -19,16 +19,17 @@ if (!$success) {
     echo '<div style="...">❌ Une erreur s\'est produite</div>';
 }
     
-if(type=="prestataire"){
+if($type=="prestataire"){
 
     $specialite = $_POST['specialite'] ?? '';
-    $adresse = $_POST['adresse'] ?? '';
+    $longitude = $_POST['longitude'] ?? '';
+    $latitude = $_POST['latitude'] ?? '';
     $ville = $_POST['ville'] ?? '';
     $disponibilite = $_POST['disponibilite'] ?? '';
 
     
-    $stmt = $conn->prepare("UPDATE prestataire SET specialite = ?, adresse = ?, ville = ?, disponibilite = ?");
-    $stmt->bind_param("ssss", $specialite, $adresse, $email, $ville, $disponibilite);
+    $stmt = $conn->prepare("UPDATE prestataire SET specialite = ?, longitude = ?, latitude = ?, ville = ?, disponibilite = ? WHERE ID= ?");
+    $stmt->bind_param("sddssi", $specialite, $longitude, $latitude, $email, $ville, $disponibilite, $_SESSION['utilisateur_id']);
     $success = $stmt->execute();
 }
 ?>

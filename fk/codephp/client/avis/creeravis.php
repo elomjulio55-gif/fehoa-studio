@@ -41,7 +41,7 @@ if (!$success) {
 }
 
 $moy = ($moy*$nbr_avis) /($nbr_avis+1);
-$moy = round($moy * 2) / 2;
+$moy = ($moy * $nbr_avis + $note) / ($nbr_avis + 1);
 
 $stmt = $conn->prepare("UPDATE prestataire SET note_moyenne= ? WHERE ID= ?");
 $stmt->bind_param("di", $moy, $prestataire_id);

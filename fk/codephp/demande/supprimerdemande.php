@@ -3,7 +3,7 @@
 require('../connexionBD.php');
 
 // Récupère les données du formulaire
-$id = $_SESSION['id'] ?? '';
+$id = $_POST['id'] ?? '';
 
 // Insertion
 $stmt = $conn->prepare("DELETE FROM demande WHERE ID= ? ");

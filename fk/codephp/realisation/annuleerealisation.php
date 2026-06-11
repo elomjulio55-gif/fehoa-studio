@@ -3,10 +3,10 @@
 require('../connexionBD.php');
 
 // Récupère les données du formulaire
-$id = $_SESSION['id'] ?? '';
+$id = $_POST['id'] ?? '';
 
 // Insertion
-$stmt = $conn->prepare("UPDATE demande SET status='annulee' WHERE ID= ?");
+$stmt = $conn->prepare("UPDATE realisation SET statut='annulee' WHERE ID= ?");
 $stmt->bind_param("i", $id);
 $success = $stmt->execute();
 if (!$success) {

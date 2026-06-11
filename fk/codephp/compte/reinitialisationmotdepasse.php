@@ -19,9 +19,9 @@ if (!$success) {
 
 if ($row) {
     if (password_verify($precedant_mot_de_passe, $row['mot_de_passe'])) {
-
+        $motdepasse_hache = password_hash($nouveau_mot_de_passe, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("UPDATE mot_de_passe = ? WHERE ID= ?");
-        $stmt->bind_param("ssssi", $nouveau_mot_de_passe, $_SESSION['utilisateur_id']);
+        $stmt->bind_param("ssssi", $motdepasse_hache, $_SESSION['utilisateur_id']);
         $success = $stmt->execute();
 
         if (!$success) {

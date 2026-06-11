@@ -14,7 +14,7 @@ $row = $res->fetch_assoc();
 
 if ($row) {
     if (password_verify($mot_de_passe, $row['mot_de_passe'])) {
-        $_SESSION['utilisateur_id'] = $row['idutilisateur'];
+        $_SESSION['utilisateur_id'] = $row['ID'];
         $_SESSION['nom'] = $row['nom'];
         $_SESSION['prenom'] = $row['prenom'];
         $_SESSION['telephone'] = $row['telephone'];
@@ -26,14 +26,14 @@ if ($row) {
         exit();
     } else {
         echo '<div style="padding: 15px; margin: 20px auto; border: 2px solid orange; color: orange; background-color: #fff6e0; width: 60%; text-align: center; border-radius: 8px;">
-                ⚠️ Aucun utilisateur trouvé.
+                ⚠️ valeur incorrect.
               </div>';
             session_unset();        // Supprime toutes les variables de session
             session_destroy();      // Détruit la session
     }
 } else {
     echo '<div style="padding: 15px; margin: 20px auto; border: 2px solid orange; color: orange; background-color: #fff6e0; width: 60%; text-align: center; border-radius: 8px;">
-            ⚠️ Aucun utilisateur trouvé.
+            ⚠️ valeur incorrect.
           </div>';
           
         

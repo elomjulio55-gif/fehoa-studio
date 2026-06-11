@@ -5,7 +5,7 @@ session_start();
 require('../../connexionBD.php');
 
 // Récupère les données du formulaire
-$specialite = $_SESSION['specialite'] ?? '';
+$specialite = $_POST['specialite'] ?? '';
 $note_moyenne = $_POST['note_moyenne'] ?? '';
 $date_souhaitee = $_POST['date_souhaitee'] ?? '';
 $latitude = $_POST['latitude'] ?? '';

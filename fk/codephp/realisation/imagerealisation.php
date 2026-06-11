@@ -1,9 +1,9 @@
 <?php
 session_start();
-require('../../connexionBD.php');
+require('../connexionBD.php');
 
 $realisation_id = $_POST['realisation_id'] ?? '';
-$dossier = '../../images/realisations/';
+$dossier = '../images/realisations/';
 
 if (!is_dir($dossier)) mkdir($dossier, 0777, true);
 

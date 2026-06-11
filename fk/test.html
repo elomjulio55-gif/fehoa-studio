@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page de test — Artilink</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #1a1d27;
+    border-bottom: 1px solid #2d3148;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7c6ff7;
+    letter-spacing: 0.5px;
+  }
+
+  header span {
+    font-size: 0.8rem;
+    color: #64748b;
+    background: #1e2235;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #2d3148;
+  }
+
+  .layout {
+    display: flex;
+    min-height: calc(100vh - 57px);
+  }
+
+  nav {
+    width: 220px;
+    background: #141620;
+    border-right: 1px solid #2d3148;
+    padding: 24px 0;
+    flex-shrink: 0;
+    position: sticky;
+    top: 57px;
+    height: calc(100vh - 57px);
+    overflow-y: auto;
+  }
+
+  nav .nav-section {
+    margin-bottom: 24px;
+  }
+
+  nav .nav-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #4a5568;
+    padding: 0 20px 8px;
+  }
+
+  nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+  }
+
+  nav a:hover {
+    color: #e2e8f0;
+    background: #1a1d27;
+    border-left-color: #7c6ff7;
+  }
+
+  main {
+    flex: 1;
+    padding: 32px;
+    max-width: 860px;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7c6ff7;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2d3148;
+  }
+
+  .card {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c4b5fd;
+    margin-bottom: 4px;
+  }
+
+  .card .action-path {
+    font-size: 0.75rem;
+    color: #4a5568;
+    font-family: monospace;
+    margin-bottom: 16px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-grid.single { grid-template-columns: 1fr; }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .field label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .field input, .field select, .field textarea {
+    background: #0f1117;
+    border: 1px solid #2d3148;
+    border-radius: 6px;
+    padding: 9px 12px;
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-family: inherit;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: #7c6ff7;
+  }
+
+  .field textarea { resize: vertical; min-height: 70px; }
+
+  .field select option { background: #1a1d27; }
+
+  button[type="submit"] {
+    margin-top: 14px;
+    background: #7c6ff7;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  button[type="submit"]:hover { background: #6d5fe6; }
+
+  .btn-danger {
+    background: #dc2626 !important;
+  }
+  .btn-danger:hover { background: #b91c1c !important; }
+
+  .btn-warning {
+    background: #d97706 !important;
+  }
+  .btn-warning:hover { background: #b45309 !important; }
+
+  .note {
+    font-size: 0.75rem;
+    color: #4a5568;
+    margin-top: 8px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Artilink</h1>
+  <span>Page de test</span>
+</header>
+
+<div class="layout">
+  <nav>
+    <div class="nav-section">
+      <div class="nav-label">Compte</div>
+      <a href="#creer-compte">Créer un compte</a>
+      <a href="#connexion">Connexion</a>
+      <a href="#modification">Modifier compte</a>
+      <a href="#reinitialisation">Changer mot de passe</a>
+      <a href="#supprimer-compte">Supprimer compte</a>
+      <a href="#deconnexion">Déconnexion</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Demande</div>
+      <a href="#creer-demande">Créer demande</a>
+      <a href="#accepter-demande">Accepter demande</a>
+      <a href="#refuser-demande">Refuser demande</a>
+      <a href="#annuler-demande">Annuler demande</a>
+      <a href="#supprimer-demande">Supprimer demande</a>
+      <a href="#image-demande">Photos demande</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Réalisation</div>
+      <a href="#terminer-realisation">Terminer</a>
+      <a href="#annuler-realisation">Annuler</a>
+      <a href="#image-realisation">Photos réalisation</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Autre</div>
+      <a href="#creer-avis">Créer avis</a>
+      <a href="#recherche">Recherche</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- COMPTE -->
+    <div class="section" id="creer-compte">
+      <div class="section-title">Compte</div>
+      <div class="card">
+        <h3>Créer un compte</h3>
+        <div class="action-path">→ codephp/compte/creercompte.php</div>
+        <form action="codephp/compte/creercompte.php" method="POST" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div class="field"><label>Nom</label><input type="text" name="nom" placeholder="Dupont"></div>
+            <div class="field"><label>Prénom</label><input type="text" name="prenom" placeholder="Jean"></div>
+            <div class="field"><label>Téléphone</label><input type="text" name="telephone" placeholder="0600000000"></div>
+            <div class="field"><label>Email</label><input type="email" name="email" placeholder="jean@mail.com"></div>
+            <div class="field"><label>Mot de passe</label><input type="password" name="mot_de_passe"></div>
+            <div class="field">
+              <label>Type</label>
+              <select name="type">
+                <option value="client">Client</option>
+                <option value="prestataire">Prestataire</option>
+              </select>
+            </div>
+            <div class="field"><label>Photo de profil</label><input type="file" name="photo" accept="image/*"></div>
+          </div>
+          <div id="prestataire-fields" style="margin-top:12px;">
+            <div class="form-grid">
+              <div class="field"><label>Spécialité</label><input type="text" name="specialite" placeholder="Plombier"></div>
+              <div class="field"><label>Ville</label><input type="text" name="ville" placeholder="Paris"></div>
+              <div class="field"><label>Latitude</label><input type="number" name="latitude" step="0.000001" placeholder="48.8566"></div>
+              <div class="field"><label>Longitude</label><input type="number" name="longitude" step="0.000001" placeholder="2.3522"></div>
+              <div class="field">
+                <label>Disponibilité</label>
+                <select name="disponibilite">
+                  <option value="disponible">Disponible</option>
+                  <option value="pas disponible">Pas disponible</option>
+                  <option value="en congé">En congé</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit">Créer le compte</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" id="connexion">
+      <h3>Connexion</h3>
+      <div class="action-path">→ codephp/compte/connexioncompte.php</div>
+      <form action="codephp/compte/connexioncompte.php" method="POST">
+        <div class="form-grid">
+          <div class="field"><label>Email</label><input type="email" name="email" placeholder="jean@mail.com"></div>
+          <div class="field"><label>Mot de passe</label><input type="password" name="mot_de_passe"></div>
+        </div>
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+
+    <div class="card" id="modification">
+      <h3>Modifier le compte</h3>
+      <div class="action-path">→ codephp/compte/modificationcompte.php</div>
+      <form action="codephp/compte/modificationcompte.php" method="POST">
+        <div class="form-grid">
+          <div class="field"><label>Nom</label><input type="text" name="nom"></div>
+          <div class="field"><label>Prénom</label><input type="text" name="prenom"></div>
+          <div class="field"><label>Téléphone</label><input type="text" name="telephone"></div>
+          <div class="field"><label>Email</label><input type="email" name="email"></div>
+          <div class="field">
+            <label>Type</label>
+            <select name="type">
+              <option value="client">Client</option>
+              <option value="prestataire">Prestataire</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="form-grid">
+            <div class="field"><label>Spécialité</label><input type="text" name="specialite"></div>
+            <div class="field"><label>Ville</label><input type="text" name="ville"></div>
+            <div class="field">
+              <label>Disponibilité</label>
+              <select name="disponibilite">
+                <option value="disponible">Disponible</option>
+                <option value="pas disponible">Pas disponible</option>
+                <option value="en congé">En congé</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit">Modifier</button>
+      </form>
+    </div>
+
+    <div class="card" id="reinitialisation">
+      <h3>Changer le mot de passe</h3>
+      <div class="action-path">→ codephp/compte/reinitialisationmotdepasse.php</div>
+      <form action="codephp/compte/reinitialisationmotdepasse.php" method="POST">
+        <div class="form-grid">
+          <div class="field"><label>Ancien mot de passe</label><input type="password" name="precedant_mot_de_passe"></div>
+          <div class="field"><label>Nouveau mot de passe</label><input type="password" name="nouveau_mot_de_pass"></div>
+        </div>
+        <button type="submit">Changer</button>
+      </form>
+    </div>
+
+    <div class="card" id="supprimer-compte">
+      <h3>Supprimer le compte</h3>
+      <div class="action-path">→ codephp/compte/supprimercompte.php</div>
+      <form action="codephp/compte/supprimercompte.php" method="POST">
+        <p class="note">Supprime le compte de l'utilisateur connecté en session.</p>
+        <button type="submit" class="btn-danger">Supprimer mon compte</button>
+      </form>
+    </div>
+
+    <div class="card" id="deconnexion">
+      <h3>Déconnexion</h3>
+      <div class="action-path">→ codephp/compte/deconnexioncompte.php</div>
+      <form action="codephp/compte/deconnexioncompte.php" method="POST">
+        <button type="submit" class="btn-warning">Se déconnecter</button>
+      </form>
+    </div>
+
+    <!-- DEMANDE -->
+    <div class="section" id="creer-demande">
+      <div class="section-title">Demande</div>
+      <div class="card">
+        <h3>Créer une demande</h3>
+        <div class="action-path">→ codephp/demande/creerdemande.php</div>
+        <form action="codephp/demande/creerdemande.php" method="POST">
+          <div class="form-grid">
+            <div class="field"><label>ID Prestataire</label><input type="number" name="prestataire_id"></div>
+            <div class="field"><label>Budget</label><input type="number" name="budjet" step="0.01"></div>
+            <div class="field"><label>Latitude</label><input type="number" name="latitude" step="0.000001" placeholder="48.8566"></div>
+            <div class="field"><label>Longitude</label><input type="number" name="longitude" step="0.000001" placeholder="2.3522"></div>
+            <div class="field"><label>Date souhaitée</label><input type="date" name="date_souhaitee"></div>
+            <div class="field single"><label>Description</label><textarea name="description"></textarea></div>
+          </div>
+          <button type="submit">Créer la demande</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" id="accepter-demande">
+      <h3>Accepter une demande</h3>
+      <div class="action-path">→ codephp/demande/accepterdemande.php</div>
+      <form action="codephp/demande/accepterdemande.php" method="POST">
+        <div class="form-grid">
+          <div class="field"><label>ID Demande</label><input type="number" name="demande_id"></div>
+          <div class="field"><label>Date début</label><input type="date" name="date_debut"></div>
+          <div class="field"><label>Date fin</label><input type="date" name="date_fin"></div>
+        </div>
+        <button type="submit">Accepter</button>
+      </form>
+    </div>
+
+    <div class="card" id="refuser-demande">
+      <h3>Refuser une demande</h3>
+      <div class="action-path">→ codephp/demande/refuserdemande.php</div>
+      <form action="codephp/demande/refuserdemande.php" method="POST">
+        <div class="form-grid single">
+          <div class="field"><label>ID Demande</label><input type="number" name="demande_id"></div>
+        </div>
+        <button type="submit" class="btn-warning">Refuser</button>
+      </form>
+    </div>
+
+    <div class="card" id="annuler-demande">
+      <h3>Annuler une demande</h3>
+      <div class="action-path">→ codephp/demande/annulerdemande.php</div>
+      <form action="codephp/demande/annulerdemande.php" method="POST">
+        <div class="form-grid single">
+          <div class="field"><label>ID Demande</label><input type="number" name="demande_id"></div>
+        </div>
+        <button type="submit" class="btn-warning">Annuler</button>
+      </form>
+    </div>
+
+    <div class="card" id="supprimer-demande">
+      <h3>Supprimer une demande</h3>
+      <div class="action-path">→ codephp/demande/supprimerdemande.php</div>
+      <form action="codephp/demande/supprimerdemande.php" method="POST">
+        <div class="form-grid single">
+          <div class="field"><label>ID Demande</label><input type="number" name="demande_id"></div>
+        </div>
+        <button type="submit" class="btn-danger">Supprimer</button>
+      </form>
+    </div>
+
+    <div class="card" id="image-demande">
+      <h3>Ajouter photos à une demande</h3>
+      <div class="action-path">→ codephp/demande/imagedemande.php</div>
+      <form action="codephp/demande/imagedemande.php" method="POST" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="field"><label>ID Demande</label><input type="number" name="demande_id"></div>
+          <div class="field"><label>Photos</label><input type="file" name="photos[]" accept="image/*" multiple></div>
+        </div>
+        <button type="submit">Envoyer les photos</button>
+      </form>
+    </div>
+
+    <!-- REALISATION -->
+    <div class="section" id="terminer-realisation">
+      <div class="section-title">Réalisation</div>
+      <div class="card">
+        <h3>Terminer une réalisation</h3>
+        <div class="action-path">→ codephp/realisation/terminerrealisation.php</div>
+        <form action="codephp/realisation/terminerrealisation.php" method="POST">
+          <div class="form-grid single">
+            <div class="field"><label>ID Réalisation</label><input type="number" name="realisation_id"></div>
+          </div>
+          <button type="submit">Terminer</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" id="annuler-realisation">
+      <h3>Annuler une réalisation</h3>
+      <div class="action-path">→ codephp/realisation/annuleerealisation.php</div>
+      <form action="codephp/realisation/annuleerealisation.php" method="POST">
+        <div class="form-grid single">
+          <div class="field"><label>ID Réalisation</label><input type="number" name="realisation_id"></div>
+        </div>
+        <button type="submit" class="btn-warning">Annuler</button>
+      </form>
+    </div>
+
+    <div class="card" id="image-realisation">
+      <h3>Ajouter photos à une réalisation</h3>
+      <div class="action-path">→ codephp/realisation/imagerealisation.php</div>
+      <form action="codephp/realisation/imagerealisation.php" method="POST" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div class="field"><label>ID Réalisation</label><input type="number" name="realisation_id"></div>
+          <div class="field"><label>Photos</label><input type="file" name="photos[]" accept="image/*" multiple></div>
+        </div>
+        <button type="submit">Envoyer les photos</button>
+      </form>
+    </div>
+
+    <!-- AVIS + RECHERCHE -->
+    <div class="section" id="creer-avis">
+      <div class="section-title">Avis &amp; Recherche</div>
+      <div class="card">
+        <h3>Créer un avis</h3>
+        <div class="action-path">→ codephp/client/avis/creationavis.php</div>
+        <form action="codephp/client/avis/creeravis.php" method="POST">
+          <div class="form-grid">
+            <div class="field"><label>ID Réalisation</label><input type="number" name="realisation_id"></div>
+            <div class="field"><label>Note (0 à 5)</label><input type="number" name="note" min="0" max="5" step="0.5"></div>
+            <div class="field single"><label>Commentaire</label><textarea name="commentaire"></textarea></div>
+          </div>
+          <button type="submit">Soumettre l'avis</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" id="recherche">
+      <h3>Rechercher un prestataire</h3>
+      <div class="action-path">→ codephp/client/recherche/resultatrecherche.php</div>
+      <form action="codephp/client/recherche/afficherrecherche.php" method="GET">
+        <div class="form-grid">
+          <div class="field"><label>Spécialité</label><input type="text" name="specialite" placeholder="Plombier"></div>
+          <div class="field"><label>Note minimale</label><input type="number" name="note_moyenne" min="0" max="5" step="0.5"></div>
+          <div class="field"><label>Date souhaitée</label><input type="date" name="date_souhaitee"></div>
+          <div class="field"><label>Latitude</label><input type="number" name="latitude" step="0.000001" placeholder="48.8566"></div>
+          <div class="field"><label>Longitude</label><input type="number" name="longitude" step="0.000001" placeholder="2.3522"></div>
+        </div>
+        <button type="submit">Rechercher</button>
+      </form>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

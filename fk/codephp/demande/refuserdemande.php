@@ -3,10 +3,10 @@
 require('../connexionBD.php');
 
 // Récupère les données du formulaire
-$id = $_SESSION['id'] ?? '';
+$id = $_POST['id'] ?? '';
 
 // Update
-$stmt = $conn->prepare("UPDATE demande SET status='refusee' WHERE ID= ?");
+$stmt = $conn->prepare("UPDATE demande SET statut='refusee' WHERE ID= ?");
 $stmt->bind_param("i", $id);
 $success = $stmt->execute();
 if (!$success) {
