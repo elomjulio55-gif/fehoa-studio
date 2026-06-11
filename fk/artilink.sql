@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 10 juin 2026 à 23:00
+-- Généré le : jeu. 11 juin 2026 à 15:05
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -101,7 +101,8 @@ CREATE TABLE `photo_realisation` (
 CREATE TABLE `prestataire` (
   `ID` int(11) NOT NULL,
   `specialite` varchar(50) NOT NULL,
-  `adresse` text NOT NULL,
+  `longitude` decimal(10,0) NOT NULL,
+  `latitude` decimal(10,0) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `note_moyenne` decimal(11,0) NOT NULL DEFAULT 0,
   `disponibilite` enum('disponible','pas disponible','en congé') NOT NULL
@@ -118,7 +119,7 @@ CREATE TABLE `realisation` (
   `demande_id` int(11) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `statut` enum('en_attente','en_cours','termine','annule') NOT NULL DEFAULT 'en_attente'
+  `statut` enum('en_attente','en_cours','terminee','annulee') NOT NULL DEFAULT 'en_attente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -204,37 +205,31 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `demande`
 --
 ALTER TABLE `demande`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `photo_demande`
 --
 ALTER TABLE `photo_demande`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `photo_realisation`
 --
 ALTER TABLE `photo_realisation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `prestataire`
---
-ALTER TABLE `prestataire`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `realisation`
 --
 ALTER TABLE `realisation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
