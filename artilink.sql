@@ -101,7 +101,8 @@ CREATE TABLE `photo_realisation` (
 CREATE TABLE `prestataire` (
   `ID` int(11) NOT NULL,
   `specialite` varchar(50) NOT NULL,
-  `adresse` text NOT NULL,
+  `longitude` decimal(11,0),
+  `latitude` decimal(11,0),
   `ville` varchar(50) NOT NULL,
   `note_moyenne` decimal(11,0) NOT NULL DEFAULT 0,
   `disponibilite` enum('disponible','pas disponible','en congé') NOT NULL
